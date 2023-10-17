@@ -47,7 +47,7 @@ def card_auth(ccn, month, year, cvv):
     
     else:
 
-        return result['message']
+        return '[UNKN] ' + ccn + '|' + month + '|' + year + '|' + cvv + ' => ' + result['message']['msg']
 
 if __name__ == '__main__':
 
