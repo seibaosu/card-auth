@@ -1,5 +1,6 @@
 import os
 import requests
+import time
 
 def header():
     print('''
@@ -66,3 +67,5 @@ if __name__ == '__main__':
             cvv = line[3]
 
             print(card_auth(ccn, month, year, cvv))
+            # add delay 1s
+            time.sleep(2)
